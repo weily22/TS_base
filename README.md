@@ -127,7 +127,7 @@
 > printLabel(myObj);
 > ```
 >
-> 可选属性
+> `可选属性`
 >
 > ```typescript
 > interface SquareConfig {
@@ -136,7 +136,7 @@
 > }
 > ```
 >
-> 只读属性
+> `只读属性`
 >
 > ```typescript
 > interface Point {
@@ -144,6 +144,47 @@
 >     readonly y:number;
 > }
 > ```
+>
+> `readonly `/ `const`
+>
+> 作为变量使用的话用 *const* ,若做为属性则使用 *readonly*
+>
+> 包含任意数量的属性
+>
+> ```typescript
+> interface SquareConfig {
+>    color?:string;
+>    width?:number;
+>    [propName:string]:any;
+> }
+> ```
+>
+> `函数类型`
+>
+> ```typescript
+> interface SearchFun {
+>   (source:string, subString:string): boolean;
+> }
+> 
+> let mySearch:SearchFun;
+> mySearch = function (src, sub) {
+>   let result = src.search(sub);
+>   return result > -1;
+> }
+> ```
+>
+> `可索引的类型`
+>
+> ```typescript
+> interface StringArray {
+>   [index: number]: string;
+> }
+> let myArray: StringArray;
+> myArray = ['X', 'M'];
+> let myStr: string = myArray[0];
+> ```
+>
+>
 
 
 
