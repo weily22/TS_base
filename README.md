@@ -182,6 +182,31 @@
 > let myArray: StringArray;
 > myArray = ['X', 'M'];
 > let myStr: string = myArray[0];
+> // 可以给索引签名设置为只读
+> interface ReadonlyStringArray {
+>     readonly [index:number]: string;
+> }
+> let myArray2:ReadonlyStringArray = ["Xiao", "mi"];
+> myArray2[2] = "Jiang"; // error!因为是只读，所以不能设置
+> ```
+>
+> `类类型`
+>
+> ```typescript
+> // 在接口中描述一个方法，在类里实现它
+> interface ClockInterface {
+>     currentTime: Date;
+>     setTime(d: Date);
+> }
+> class Clock implements ClockInterface {
+>     currentTime: Date;
+>     setTime(d: Date) {
+>         this.currentTime = d;
+>     }
+>     constructor(h:number, m:number) {}
+> }
+> // 接口描述了类的公共部分
+> 
 > ```
 >
 >
