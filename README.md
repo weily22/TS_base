@@ -1,21 +1,30 @@
 # TS_base
 >  Typescript 基础学习
 >
-> **TypeScript 与 JavaScript 的区别**
+>  **TypeScript 与 JavaScript 的区别**
 >
-> |                 TypeScript                 |                JavaScript                |
-> | :----------------------------------------: | :--------------------------------------: |
-> | 是javaScript的超集，可以编译成纯javascript |      一种脚本语言，用于创建动态网页      |
-> |         能在编译期间发现并纠正错误         | 作为一种解释型语言，只能在运行时发现错误 |
-> |       强类型，支持静态检查和代码重构       |         弱类型，没有静态类型选项         |
-> |    需要被编译成javascript，使浏览器理解    |            直接在浏览器中运行            |
-> |            支持模块、泛型和接口            |          不支持模块、泛型和接口          |
-> |           支持es3,es4,es5,es6等            |       不支持编译es3,es4,es5,es6等        |
+>  |           TypeScript            |      JavaScript       |
+>  | :-----------------------------: | :-------------------: |
+>  | 是javaScript的超集，可以编译成纯javascript |    一种脚本语言，用于创建动态网页    |
+>  |          能在编译期间发现并纠正错误          | 作为一种解释型语言，只能在运行时发现错误  |
+>  |         强类型，支持静态检查和代码重构         |     弱类型，没有静态类型选项      |
+>  |     需要被编译成javascript，使浏览器理解     |       直接在浏览器中运行       |
+>  |           支持模块、泛型和接口            |      不支持模块、泛型和接口      |
+>  |       支持es3,es4,es5,es6等        | 不支持编译es3,es4,es5,es6等 |
 
-
+> **typescript优势**：
+>
+> 1. 支持 es6
+> 2. 强大的IDE支持
+> 3. angular2 的开发语言
 
 ## TypeScript
 
+> 开发环境：
+>
+> * 在线 complier 编译
+> * 本地 complier  (npm install -g typescript)
+>
 > `Verson: 3.1`
 >
 > 安装方式：
@@ -62,11 +71,11 @@
 > // 默认情况下，从0开始为元素编号，后面每一项都增加1
 > enum Color { Red, Green, Blue };
 > let c:Color = Color.Green; // 1 
-> 
+>
 > // 为每一项指定特定值
 > enum Color2 { Red = 1, Green = 2, Blue = 4 };
 > let c2:Color2 = Color2.Green; // 2
-> 
+>
 > // 通过枚举值得到名字
 > enum Color3 { Red = 1, Green, Blue };
 > let colorName: string = Color3[2];
@@ -132,7 +141,13 @@
 
 > **接口**
 >
+> 用来建立某种代码约定，使得其它开发者在调用某个方法或创建新的类时必须遵循接口所定义的代码约定。
+>
 > 在TypeScript 里，接口的作用就是为类型命名和为你的代码或第三方代码定义契约。
+>
+> interface。声明类型。
+>
+> implement。实现
 >
 > ```typescript
 > interface LabelledValue {
@@ -183,7 +198,7 @@
 > interface SearchFun {
 >   (source:string, subString:string): boolean;
 > }
-> 
+>
 > let mySearch:SearchFun;
 > mySearch = function (src, sub) {
 >   let result = src.search(sub);
@@ -224,7 +239,7 @@
 >     constructor(h:number, m:number) {}
 > }
 > // 接口描述了类的公共部分
-> 
+>
 > ```
 >
 > 类具有两个类型：静态部分的类型和实例的类型
@@ -241,11 +256,11 @@
 > interface PenStroke {
 >   penWidth: number;
 > }
-> 
+>
 > interface Square extends Shape, PenStroke {
 >   sideLength: number;
 > }
-> 
+>
 > let square = <Square> {};
 > square.color = 'blue';
 > square.sideLength = 10;
@@ -263,14 +278,14 @@
 >   interval: number;
 >   reset(): void;
 > }
-> 
+>
 > function getCounter():Counter{
 >   let counter = <Counter> function (start: number) {};
 >   counter.interval = 123;
 >   counter.reset = function () { };
 >   return counter;
 > }
-> 
+>
 > let c = getCounter();
 > c(10);
 > c.reset();
@@ -293,15 +308,34 @@
 > }
 > let greeter = new Greeter("world");
 > // 当我们使用 new 构造一个Greeter的实例时，它会调用构造函数，创建一个Greeter类型的新对象，并执行构造函数初始化它。
+> // constructor 构造函数只在实例化的时候被执行一次，且为内部函数，不可被外部调用。
 > ```
 >
 > `继承`
 >
+> `extends`  `super`
 >
->
->
+> 获得继承类的所有属性和方法。
 
 
+
+> **泛型**
+>
+> 参数化的类型，一般用来限制集合的内容
+
+> **模块**
+>
+> 在 typescript 中一个模块及一个文件
+>
+> `export` ` import`
+
+> **类型定义文件** （*.d.ts）
+>
+> 供指定的框架使用
+>
+> 例如：jQuery
+>
+> 引入jquery.d.ts
 
 
 
@@ -348,4 +382,136 @@
 > console.log(employeeName) // xiaomi
 > ```
 >
+> * generator函数。控制函数的执行过程，手工暂停和恢复代码执行。
 >
+> * destructuring析构表达式。通过表达式将对象或数组拆解成任意数量的变量。
+>
+>   ​
+
+> ### 实例
+>
+> 》 模板字符串  代码文件- string.ts
+>
+> ```typescript
+> function test(tpl, name, age) {
+>     console.log('tpl: ' + tpl);
+>     console.log('name: ' + name);
+>     console.log('age: ' + age);
+> }
+>
+> const myName = 'xm';
+> const getAge = function () { return 18; };
+>
+> test`我的名字是${myName},我的年龄是${getAge()}`;
+>
+> =>>>
+> [LOG]: tpl: 我的名字是,,我的年龄是, 
+> [LOG]: name: xm 
+> [LOG]: age: 18 
+> ```
+>
+> 》参数类型 代码文件- type.ts
+>
+> ```typescript
+> // typescript 里面有类型推断机制，推断出myName为string类型，所以myName不能赋值给number类型
+> var myName = "xm";
+> myName = 18;
+> =>>>
+> Type 'number' is not assignable to type 'string'.
+> ```
+>
+> 》参数默认值 代码文件- paramDefault.ts
+>
+> ```typescript
+> // typescript 里面参数类型没有设置默认值，若少传了参数则提示报错
+> function test (a, b, c) {
+>   console.log('a: '+a);
+>   console.log('b: '+b);
+>   console.log('c: '+c);
+> }
+>
+> test('x', 'y');
+> =>>>
+> Parameter 'a' implicitly has an 'any' type.
+> Parameter 'b' implicitly has an 'any' type.
+> Parameter 'c' implicitly has an 'any' type.
+> Expected 3 arguments, but got 2.
+>
+> // 正确示范
+> function test2(a:string, b:string, c:string = 'c') {
+>   console.log('a: '+a);
+>   console.log('b: '+b);
+>   console.log('c: '+c);
+> }
+>
+> test2('x', 'y');
+>
+> =>>>
+> [LOG]: a: x 
+> [LOG]: b: y 
+> [LOG]: c: c 
+>
+> // 可选参数
+> function test3(a:string, b?:string, c:string = 'c') {
+>   console.log('a: '+a);
+>   console.log('b: '+b);
+>   console.log('c: '+c);
+> }
+> test3('x');
+> test3('x', '', 'z');
+>
+> =>>>
+> [LOG]: a: x 
+> [LOG]: b: undefined 
+> [LOG]: c: c 
+> [LOG]: a: x 
+> [LOG]: b:  
+> [LOG]: c: z 
+> ```
+>
+> 》类的继承    代码文件- class.ts
+>
+> ```typescript
+> class Person {
+>     constructor (public name: string) {
+>         console.log('我是父类，哈哈', name);
+>     }
+>     eat() {
+>         console.log("I'm eating");
+>     }
+> }
+>
+> let p1 = new Person('batman');
+> p1.eat();
+>
+> class Employee extends Person {
+>     constructor(name:string, code:string) {
+>         super(name); // 调用父类的构造函数
+>         console.log('我是子类，嘻嘻', code);
+>         this.code = code;
+>     }
+>     code: string;
+>     work() {
+>         super.eat();
+>         this.doWork();
+>     }
+>     private doWork() {
+>         console.log('我开始干活了');
+>     }
+> }
+>
+> let el = new Employee("name", "啦啦123");
+> el.work();
+>
+> =>>>
+> [LOG]: 我是父类，哈哈,  batman 
+> [LOG]: I'm eating 
+> [LOG]: 我是父类，哈哈,  name 
+> [LOG]: 我是子类，嘻嘻,  啦啦123 
+> [LOG]: I'm eating 
+> [LOG]: 我开始干活了 
+> ```
+>
+> 
+>
+> 
