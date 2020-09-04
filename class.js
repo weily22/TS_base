@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -13,6 +14,9 @@ var Person = /** @class */ (function () {
         this.name = name;
         console.log('我是父类，哈哈', name);
     }
+    Person.prototype.getName = function () {
+        return this.name;
+    };
     Person.prototype.eat = function () {
         console.log("I'm eating");
     };
@@ -20,6 +24,7 @@ var Person = /** @class */ (function () {
 }());
 var p1 = new Person('batman');
 p1.eat();
+p1.getName();
 var Employee = /** @class */ (function (_super) {
     __extends(Employee, _super);
     function Employee(name, code) {

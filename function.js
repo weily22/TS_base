@@ -1,3 +1,4 @@
+"use strict";
 // rest and spread
 function func(a, b, c) {
     console.log('a: ' + a);

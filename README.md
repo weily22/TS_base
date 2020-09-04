@@ -42,9 +42,30 @@
 
 > **TypeScript 基础类型：**
 >
-> *boolean* 、*number*、*string* 、*array*、*enum* 、*any* 、*void*
+> *boolean* 、*number*、*string* 、*enum* 、*any* 、*void*、symbol
 >
-> *null* 、*undefined*、*never*、*object*
+> *null* 、*undefined*、*never*
+>
+> **对象类型**
+>
+> *{}* ，*class* ，*function* ，*[]*
+>
+> **类型注解**
+>
+> ```typescript
+> // 我们来告诉 TS 变量是什么类型
+> let count:number;
+> count = 12;
+> ```
+>
+> **类型推断**
+>
+> ```typescript
+> // TS 会自动尝试分析变量的类型
+> let countInference = 123;
+> ```
+>
+> 
 
 
 
@@ -60,6 +81,7 @@
 > let xm:string = 'xiaomi';
 > let arr:number[] = [1,2,43]; // number类型数组
 > let list:string[] = ['a','b','c']; // 字符串类型数组
+> let arr:(number|string)[] = [1,'2',43]; // number或string类型数组
 > let myArray:Array = [1,2,'x','m',true,3]; // 任意类型数组
 > let notSure:any = 4; // 变量notSure的类型为任意类型
 > let anylist:any[] = [1, true, 'g']; // 任意类型数组
@@ -296,6 +318,8 @@
 
 > **类**
 >
+> 访问类型：private，protected，public
+>
 > ```typescript
 > class Greeter {
 >     greeting: string;  // 属性
@@ -309,6 +333,21 @@
 > let greeter = new Greeter("world");
 > // 当我们使用 new 构造一个Greeter的实例时，它会调用构造函数，创建一个Greeter类型的新对象，并执行构造函数初始化它。
 > // constructor 构造函数只在实例化的时候被执行一次，且为内部函数，不可被外部调用。
+>
+> interface IPerson {
+>     name: String;
+>     age: Number;
+>     [propName: string]: any;
+>     say(): string;
+> }
+>
+> class User implements IPerson {
+>   name="xm";
+>   say() {
+>     return "hello";
+>   }
+> }
+>
 > ```
 >
 > `继承`
@@ -316,6 +355,52 @@
 > `extends`  `super`
 >
 > 获得继承类的所有属性和方法。
+>
+> `重写`
+>
+> **类里面的 setter 和 getter**
+>
+> ```typescript
+> class Person4 {
+>     constructor(private _name: string) {};
+>     get name () {
+>         return this._name;
+>     }
+>     set name (name: string) {
+>         this._name = name;
+>     }
+> }
+>
+> const person4 = new Person4('小米');
+> console.log(person4.name);
+> person4.name = 'xiao_米';
+> console.log(person4.name);
+>
+> =>>>
+> 小米
+> xiao_米
+> ```
+>
+> **抽象类**
+>
+> ```typescript
+> // abstract 抽象关键字
+> // 只能被继承，不能被实例化
+> abstract class Geom {
+>     getType() { return 'Geom' };
+>     width: number;
+>     abstract getArea(): number;
+> }
+>
+> class Circle extends Geom {
+>     getArea() {
+>         return 123;
+>     }
+> }
+>
+> ```
+>
+> 
 
 
 
@@ -383,10 +468,24 @@
 > ```
 >
 > * generator函数。控制函数的执行过程，手工暂停和恢复代码执行。
->
 > * destructuring析构表达式。通过表达式将对象或数组拆解成任意数量的变量。
+
+
+
+> **interface 和 type  关键字**
 >
->   ​
+> interface
+>
+> * 同名的 interface 自动聚合，也可以跟同名的 class 自动聚合。
+> * 只能表示 object、class 、function 类型。
+>
+> type
+>
+> * 不仅仅能表示 object、class 、function 类型，还能表示基本类型、元素、并集等。
+> * 不能重名，扩展已有的 type 需要创建新 type。
+> * 支持复杂的类型操作。
+
+
 
 > ### 实例
 >
@@ -510,6 +609,16 @@
 > [LOG]: 我是子类，嘻嘻,  啦啦123 
 > [LOG]: I'm eating 
 > [LOG]: 我开始干活了 
+> ```
+>
+> 》函数解构参数 代码文件-func.ts
+>
+> ```typescript
+> // 参数结构
+> function add({ first, second }: { first: number, second: number }) {
+>     return first + second;
+> }
+> add({ first: 2, second: 3 });
 > ```
 >
 > 

@@ -1,3 +1,4 @@
+"use strict";
 var Person1 = /** @class */ (function () {
     function Person1(config) {
         this.config = config;

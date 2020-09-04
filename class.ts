@@ -2,6 +2,9 @@ class Person {
     constructor (public name: string) {
         console.log('我是父类，哈哈', name);
     }
+    getName() {
+        return this.name;
+    }
     eat() {
         console.log("I'm eating");
     }
@@ -9,6 +12,7 @@ class Person {
 
 let p1 = new Person('batman');
 p1.eat();
+p1.getName();
 
 class Employee extends Person {
     constructor(name:string, code:string) {

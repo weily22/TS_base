@@ -1,3 +1,4 @@
+"use strict";
 function test(a, b, c) {
     console.log('a: ' + a);
     console.log('b: ' + b);
