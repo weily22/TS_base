@@ -12,7 +12,7 @@ var Person4 = /** @class */ (function () {
         set: function (name) {
             this._name = name;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Person4;

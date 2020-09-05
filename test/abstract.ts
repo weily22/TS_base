@@ -12,7 +12,6 @@ console.log('person5', person5.name);
 // 只能被继承，不能被实例化
 abstract class Geom {
     getType() { return 'Geom' };
-    width: number;
     abstract getArea(): number;
 }
 
